@@ -19,7 +19,7 @@ def run_web():
 
 Thread(target=run_web, daemon=True).start()
 
-# Настройки Discord
+# Discord
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
@@ -28,6 +28,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
+    print("ON_READY СРАБОТАЛ")
     print(f"Бот {bot.user} запущен!")
 
     try:
@@ -46,6 +47,6 @@ token = os.getenv("TOKEN")
 print("TOKEN найден:", token is not None)
 
 if not token:
-    print("ОШИБКА: переменная TOKEN не найдена!")
+    print("ОШИБКА: TOKEN не найден!")
 else:
     bot.run(token)
