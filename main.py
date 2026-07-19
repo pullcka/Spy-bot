@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import app_commands
 import os
 from threading import Thread
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -25,6 +26,11 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
+    await bot.tree.sync()
     print(f"Бот {bot.user} запущен!")
+
+@bot.tree.command(name="ping", description="Проверка бота")
+async def ping(interaction: discord.Interaction):
+    await interaction.response.send_message("🏓 Pong!")
 
 bot.run(os.getenv("TOKEN"))
