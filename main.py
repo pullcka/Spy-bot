@@ -33,4 +33,7 @@ async def on_ready():
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message("🏓 Pong!")
 
-bot.run(os.getenv("TOKEN"))
+token = os.getenv("TOKEN")
+print("TOKEN найден:", token is not None)
+
+bot.run(token)
